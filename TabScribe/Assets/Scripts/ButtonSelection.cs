@@ -5,47 +5,34 @@ using UnityEngine.EventSystems;
 
 public class ButtonSelection : MonoBehaviour
 {
-
 	private const float defaultSelectionTime = 4.0f;
 
-    // Current sentence index
-    private int currentSentenceIndex = 0;
-    private float startTime;
-    private float endTime;
-    private int T;
-    private GameObject[] buttons;
-    private GameObject selectedButton; // Current selected button
-    private Color originalColor;
-    private float lastSelectionTime = defaultSelectionTime;
-    private string[] sentences = {
-        "a bad fig jam",
-        "ben can hang a bag",
-        "ann had a mad camel",
-        "ben can bake a cake",
-        "hank feeding an eagle"
-    };
-
-    public TMP_InputField inputField;
+	public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
+	public GameObject[] buttons;
 	public Color selectedColor;
-	public GameObject KeyA;
-	public GameObject KeyB;
-	public GameObject KeyC;
-	public GameObject KeyD;
-	public GameObject KeyE;
-	public GameObject KeyF;
-	public GameObject KeyG;
-	public GameObject KeyH;
-	public GameObject KeyI;
-	public GameObject KeyJ;
-	public GameObject KeyK;
-	public GameObject KeyL;
-	public GameObject KeyM;
-	public GameObject KeyN;
+
+	// Current sentence index
+	private int currentSentenceIndex = 0;
+	// Variables for tracking text entry speed
+	private float startTime;
+	private float endTime;
+	private int T;
+	private GameObject selectedButton; // Current selected button
+	private Color originalColor;
+	private float lastSelectionTime = defaultSelectionTime;
+	private string[] sentences = {
+		"a bad fig jam",
+		"ben can hang a bag",
+		"ann had a mad camel",
+		"ben can bake a cake",
+		"hank feeding an eagle"
+	};
+
 
 	private void Start()
 	{
-		selectedButton = KeyA; 		// Initialize the starting selected button from sentences
+		selectedButton = buttons[0]; 		// Initialize the starting selected button from sentences
 		textField.text = sentences[currentSentenceIndex];
 
 		// Get the original color of the button
@@ -54,26 +41,6 @@ public class ButtonSelection : MonoBehaviour
 		{
 			originalColor = buttonRenderer.material.color;
 		}
-	}
-
-
-	private void Awake()
-	{
-		buttons = new GameObject[14];
-		buttons[0] = KeyA;
-		buttons[1] = KeyB;
-		buttons[2] = KeyC;
-		buttons[3] = KeyD;
-		buttons[4] = KeyE;
-		buttons[5] = KeyF;
-		buttons[6] = KeyG;
-		buttons[7] = KeyH;
-		buttons[8] = KeyI;
-		buttons[9] = KeyJ;
-		buttons[10] = KeyK;
-		buttons[11] = KeyL;
-		buttons[12] = KeyM;
-		buttons[13] = KeyN;
 	}
 
 
@@ -103,6 +70,9 @@ public class ButtonSelection : MonoBehaviour
 	{
 		ProcessKeyPress();
 	}
+
+
+
 
 
 	//Button Color Changing Mechanism
@@ -165,60 +135,60 @@ public class ButtonSelection : MonoBehaviour
 			startTime = Time.time;
 		}
 
-		if (selectedButton == KeyA &&  Input.GetKeyDown(KeyCode.I))
+		if (selectedButton == buttons[0] &&  Input.GetKeyDown(KeyCode.I))
 		{
-				WriteCharacterToInputField('a');
+			WriteCharacterToInputField('a');
 		}
-		else if (selectedButton == KeyB && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[1] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('b');
 		}
-		else if (selectedButton == KeyC && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[2] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('c');
 		}
-		else if (selectedButton == KeyD && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[3] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('d');
 		}
-		else if (selectedButton == KeyE && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[4] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('e');
 		}
-		else if (selectedButton == KeyF && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[5] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('f');
 		}
-		else if (selectedButton == KeyG && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[6] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('g');
 		}
-		else if (selectedButton == KeyH && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[7] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('h');
 		}
-		else if (selectedButton == KeyI && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[8] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('i');
 		}
 
-		else if (selectedButton == KeyJ && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[9] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('j');
 		}
-		else if (selectedButton == KeyK && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[10] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('k');
 		}
-		else if (selectedButton == KeyL && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[11] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('l');
 		}
-		else if (selectedButton == KeyM && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[12] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('m');
 		}
-		else if (selectedButton == KeyN && Input.GetKeyDown(KeyCode.I))
+		else if (selectedButton == buttons[13] && Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('n');
 		}
@@ -291,9 +261,9 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0)
+		if (lastSelectionTime <= 0.0f)
 		{
-			
+
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
 
@@ -302,37 +272,37 @@ public class ButtonSelection : MonoBehaviour
 			if (angle < 0)
 				angle += 360;
 
-			if (selectedButton == KeyA)
-		{
+			if (selectedButton == buttons[0])
+			{
 				// here we are using the "angle==0" to maintain the current selection. because when we start the application angle is exactly zero.
 				//Such that if we make the "angle>=0" it will automatically change the selection from current selected button.
-			if (angle > 0 && angle <= 90) 
-			{
-				selectedButton = KeyD;
-				lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
-			}
-			else if (angle >= 91 &&  angle <= 155)
-			{
-				selectedButton = KeyC;
-				lastSelectionTime = defaultSelectionTime;
-			}
-			else if (angle >= 156 &&  angle <= 215)
-			{
-				selectedButton = KeyB;
-				lastSelectionTime = defaultSelectionTime;
-			}
-			else if (angle >= 216 &&  angle <= 310)
-			{
-				selectedButton = KeyF;
-				lastSelectionTime = defaultSelectionTime;
-			}
-			else if (angle >= 311 &&  angle <= 360)
-			{
-				selectedButton = KeyE;
-				lastSelectionTime = defaultSelectionTime;
+				if (angle > 0.0f && angle <= 90.0f) 
+				{
+					selectedButton = buttons [3];
+					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
+				}
+				else if (angle > 90.0f &&  angle <= 155.0f)
+				{
+					selectedButton = buttons[2];
+					lastSelectionTime = defaultSelectionTime;
+				}
+				else if (angle > 155.0f &&  angle <= 215.0f)
+				{
+					selectedButton = buttons[1];
+					lastSelectionTime = defaultSelectionTime;
+				}
+				else if (angle > 215.0f &&  angle <= 310.0f)
+				{
+					selectedButton = buttons[5];
+					lastSelectionTime = defaultSelectionTime;
+				}
+				else if (angle > 310.0f &&  angle <= 360.0f)
+				{
+					selectedButton = buttons[4];
+					lastSelectionTime = defaultSelectionTime;
+				}
 			}
 		}
-	}
 	}
 
 
@@ -343,8 +313,8 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
-			
+		if (lastSelectionTime <= 0.0f) {
+
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
 
@@ -355,36 +325,36 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyB)
+			if (selectedButton == buttons [1])
 			{
-				if (angle > 0 && angle <= 40)
+				if (angle > 0.0f && angle <= 40.0f)
 				{
-					selectedButton = KeyA;
+					selectedButton = buttons [0];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 41 && angle <= 90)
+				else if (angle > 40.0f && angle <= 90.0f)
 				{
-					selectedButton = KeyC;
+					selectedButton = buttons [2];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 91 && angle <= 140)
+				else if (angle > 90.0f && angle <= 140.0f)
 				{
-					selectedButton = KeyJ;
+					selectedButton = buttons [9];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 141 && angle <= 200)
+				else if (angle > 140.0f && angle <= 200.0f)
 				{
-					selectedButton = KeyI;
+					selectedButton = buttons [8];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 201 && angle <= 280) 
+				else if (angle > 200.0f && angle <= 280.0f) 
 				{
-					selectedButton = KeyH;
+					selectedButton = buttons [7];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 281 && angle <= 360)
+				else if (angle > 280.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyF;
+					selectedButton = buttons [5];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
@@ -401,7 +371,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0)
+		if (lastSelectionTime <= 0.0f)
 		{
 
 			float mouseX = Input.GetAxis ("Mouse X");
@@ -412,31 +382,31 @@ public class ButtonSelection : MonoBehaviour
 			if (angle < 0)
 				angle += 360;
 
-			if (selectedButton == KeyC)
+			if (selectedButton == buttons[2])
 			{
-				if (angle > 0 && angle <= 50) 
+				if (angle > 0.0f && angle <= 50.0f) 
 				{
-					selectedButton = KeyD;
+					selectedButton = buttons [3];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				}
-				else if (angle >= 51 &&  angle <= 110)
+				else if (angle > 50.0f &&  angle <= 110.0f)
 				{
-					selectedButton = KeyK;
+					selectedButton = buttons[10];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 111 &&  angle <= 180)
+				else if (angle > 110.0f &&  angle <= 180)
 				{
-					selectedButton = KeyJ;
+					selectedButton = buttons[9];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 181 &&  angle <= 270)
+				else if (angle > 180.0f &&  angle <= 270.0f)
 				{
-					selectedButton = KeyB;
+					selectedButton = buttons[1];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 271 &&  angle <= 360)
+				else if (angle > 270.0f &&  angle <= 360.0f)
 				{
-					selectedButton = KeyA;
+					selectedButton = buttons[0];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
@@ -453,7 +423,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0)
+		if (lastSelectionTime <= 0.0f)
 		{
 
 			float mouseX = Input.GetAxis ("Mouse X");
@@ -464,31 +434,31 @@ public class ButtonSelection : MonoBehaviour
 			if (angle < 0)
 				angle += 360;
 
-			if (selectedButton == KeyD)
+			if (selectedButton == buttons[3])
 			{
-				if (angle > 0 && angle <= 65) 
+				if (angle > 0.0f && angle <= 65.0f) 
 				{
-					selectedButton = KeyL;
+					selectedButton = buttons [11];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				}
-				else if (angle >= 66 &&  angle <= 140)
+				else if (angle > 65.0f &&  angle <= 140.0f)
 				{
-					selectedButton = KeyK;
+					selectedButton = buttons[10];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 141 &&  angle <= 200 )
+				else if (angle > 140.0f &&  angle <= 200.0f )
 				{
-					selectedButton = KeyC;
+					selectedButton = buttons[2];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 201  &&  angle <= 260)
+				else if (angle > 200.0f  &&  angle <= 260.0f)
 				{
-					selectedButton = KeyA;
+					selectedButton = buttons[0];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 261 &&  angle <= 360)
+				else if (angle > 260.0f &&  angle <= 360.0f)
 				{
-					selectedButton = KeyE;
+					selectedButton = buttons[4];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
@@ -505,7 +475,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -517,36 +487,36 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyE)
+			if (selectedButton == buttons [4])
 			{
-				if (angle > 0 && angle <= 40)
+				if (angle > 0.0f && angle <= 40.0f)
 				{
-					selectedButton = KeyM;
+					selectedButton = buttons [12];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 41 && angle <= 80)
+				else if (angle > 40.0f && angle <= 80.0f)
 				{
-					selectedButton = KeyL;
+					selectedButton = buttons [11];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 81 && angle <= 120)
+				else if (angle > 80.0f && angle <= 120.0f)
 				{
-					selectedButton = KeyD;
+					selectedButton = buttons [3];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 121 && angle <= 180)
+				else if (angle > 120.0f && angle <= 180.0f)
 				{
-					selectedButton = KeyA;
+					selectedButton = buttons [0];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 181 && angle <= 270) 
+				else if (angle > 180.0f && angle <= 270.0f) 
 				{
-					selectedButton = KeyF;
+					selectedButton = buttons [5];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 271 && angle <= 360)
+				else if (angle > 270.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyN;
+					selectedButton = buttons [13];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
@@ -563,7 +533,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -575,36 +545,36 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyF)
+			if (selectedButton == buttons [5])
 			{
-				if (angle > 0 && angle <= 50)
+				if (angle > 0.0f && angle <= 50.0f)
 				{
-					selectedButton = KeyE;
+					selectedButton = buttons [4];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 51 && angle <= 125)
+				else if (angle > 50.0f && angle <= 125.0f)
 				{
-					selectedButton = KeyA;
+					selectedButton = buttons [0];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 126 && angle <= 180)
+				else if (angle > 125.0f && angle <= 180.0f)
 				{
-					selectedButton = KeyB;
+					selectedButton = buttons [1];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 181 && angle <= 230)
+				else if (angle > 180.0f && angle <= 230.0f)
 				{
-					selectedButton = KeyH;
+					selectedButton = buttons [7];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 231 && angle <= 310) 
+				else if (angle > 230.0f && angle <= 310.0f) 
 				{
-					selectedButton = KeyG;
+					selectedButton = buttons [6];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 311 && angle <= 360)
+				else if (angle > 310.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyN;
+					selectedButton = buttons [13];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
@@ -620,7 +590,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -632,21 +602,21 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyG)
+			if (selectedButton == buttons [6])
 			{
-				if (angle > 0 && angle <= 50)
+				if (angle > 0.0f && angle <= 50.0f)
 				{
-					selectedButton = KeyN;
+					selectedButton = buttons [13];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 51 && angle <= 130)
+				else if (angle > 50.0f && angle <= 130.0f)
 				{
-					selectedButton = KeyF;
+					selectedButton = buttons [5];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 131 && angle <= 270)
+				else if (angle > 130.0f && angle <= 270.0f)
 				{
-					selectedButton = KeyH;
+					selectedButton = buttons [7];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -664,7 +634,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -676,26 +646,26 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyH)
+			if (selectedButton == buttons [7])
 			{
-				if (angle > 0 && angle <= 40)
+				if (angle > 0.0f && angle <= 40.0f)
 				{
-					selectedButton = KeyF;
+					selectedButton = buttons [5];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 41 && angle <= 90)
+				else if (angle > 40.0f && angle <= 90.0f)
 				{
-					selectedButton = KeyB;
+					selectedButton = buttons [1];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 91 && angle <= 180)
+				else if (angle > 90.0f && angle <= 180.0f)
 				{
-					selectedButton = KeyI;
+					selectedButton = buttons [8];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 181 && angle <= 360)
+				else if (angle > 180.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyG;
+					selectedButton = buttons [6];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -713,7 +683,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -725,21 +695,21 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyI)
+			if (selectedButton == buttons [8])
 			{
-				if (angle > 0 && angle <= 45)
+				if (angle > 0.0f && angle <= 45.0f)
 				{
-					selectedButton = KeyB;
+					selectedButton = buttons [1];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 46 && angle <= 90)
+				else if (angle > 45.0f && angle <= 90.0f)
 				{
-					selectedButton = KeyJ;
+					selectedButton = buttons [9];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 181 && angle <= 360)
+				else if (angle > 180.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyH;
+					selectedButton = buttons [7];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -755,7 +725,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -767,26 +737,26 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyJ)
+			if (selectedButton == buttons [9])
 			{
-				if (angle > 0 && angle <= 40)
+				if (angle > 0.0f && angle <= 40.0f)
 				{
-					selectedButton = KeyC;
+					selectedButton = buttons [2];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 41 && angle <= 90)
+				else if (angle > 40.0f && angle <= 90.0f)
 				{
-					selectedButton = KeyK;
+					selectedButton = buttons [10];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 91 && angle <= 270)
+				else if (angle > 90.0f && angle <= 270.0f)
 				{
-					selectedButton = KeyI;
+					selectedButton = buttons [8];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 271 && angle <= 360)
+				else if (angle > 270.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyB;
+					selectedButton = buttons [1];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -803,7 +773,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -815,26 +785,26 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyK)
+			if (selectedButton == buttons [10])
 			{
-				if (angle >= 160 && angle <= 225)
+				if (angle > 160.0f && angle <= 225.0f)
 				{
-					selectedButton = KeyJ;
+					selectedButton = buttons [9];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 226 && angle < 270)
+				else if (angle > 225.0f && angle < 270.0f)
 				{
-					selectedButton = KeyC;
+					selectedButton = buttons [2];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 271 && angle <= 315)
+				else if (angle > 270.0f && angle <= 315.0f)
 				{
-					selectedButton = KeyD;
+					selectedButton = buttons [3];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 316 && angle <= 360)
+				else if (angle > 315.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyL;
+					selectedButton = buttons [11];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -851,7 +821,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -863,21 +833,21 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyL)
+			if (selectedButton == buttons[11])
 			{
-				if (angle >= 90 && angle <= 170)
+				if (angle > 90.0f && angle <= 170.0f)
 				{
-					selectedButton = KeyK;
+					selectedButton = buttons [10];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 171 && angle <= 270)
+				else if (angle > 170.0f && angle <= 270.0f)
 				{
-					selectedButton = KeyD;
+					selectedButton = buttons [3];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 271 && angle <= 360)
+				else if (angle > 270.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyM;
+					selectedButton = buttons [12];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -897,7 +867,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -909,21 +879,21 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyM)
+			if (selectedButton == buttons[12])
 			{
-				if (angle > 0 && angle <= 150)
+				if (angle > 0.0f && angle <= 150.0f)
 				{
-					selectedButton = KeyL;
+					selectedButton = buttons [11];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 151 && angle <= 210)
+				else if (angle > 150.0f && angle <= 210.0f)
 				{
-					selectedButton = KeyE;
+					selectedButton = buttons [4];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 211 && angle <= 360)
+				else if (angle > 210.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyN;
+					selectedButton = buttons [13];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -931,7 +901,7 @@ public class ButtonSelection : MonoBehaviour
 			}
 		}
 	}
-		
+
 
 	// Selection for neighbours of N
 	public void SelectionfromN()
@@ -940,7 +910,7 @@ public class ButtonSelection : MonoBehaviour
 		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0) {
+		if (lastSelectionTime <= 0.0f) {
 
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
@@ -952,26 +922,26 @@ public class ButtonSelection : MonoBehaviour
 				angle += 360;
 
 
-			if (selectedButton == KeyN)
+			if (selectedButton == buttons[13])
 			{
-				if (angle > 0 && angle <= 90)
+				if (angle > 0.0f && angle <= 90.0f)
 				{
-					selectedButton = KeyM;
+					selectedButton = buttons [12];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle >= 91 && angle <= 145)
+				else if (angle > 90.0f && angle <= 145.0f)
 				{
-					selectedButton = KeyE;
+					selectedButton = buttons [4];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle >= 146 && angle <= 180)
+				else if (angle > 145.0f && angle <= 180.0f)
 				{
-					selectedButton = KeyF;
+					selectedButton = buttons [5];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle >= 181 && angle <= 360)
+				else if (angle > 180.0f && angle <= 360.0f)
 				{
-					selectedButton = KeyG;
+					selectedButton = buttons [6];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -983,8 +953,8 @@ public class ButtonSelection : MonoBehaviour
 
 
 
-	}
-	
+}
+
 
 
 
