@@ -54,7 +54,7 @@ public class ButtonSelection : MonoBehaviour
 	private void Start()
 	{
 		keyMap = new Dictionary<Keyname, GameObject>();
-		// Assign GameObjects to Keyname values in the dictionary
+		// Assign GameObjects to Keyname values
 		keyMap.Add(Keyname.KeyA, buttons[0]);
 		keyMap.Add(Keyname.KeyB, buttons[1]);
 		keyMap.Add(Keyname.KeyC, buttons[2]);
