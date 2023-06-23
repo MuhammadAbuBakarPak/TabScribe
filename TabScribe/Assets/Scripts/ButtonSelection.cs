@@ -15,11 +15,12 @@ public class ButtonSelection : MonoBehaviour
 	public TextMeshProUGUI textField;
 	public Color selectedColor;
 	public GameObject[] buttons;
-	//private Dictionary<Keyname, GameObject> buttonMap; // Dictionary to map Keyname to GameObject
 
 
-	private const float defaultSelectionTime = 4.0f;
 
+	private const float defaultSelectionTime = 0.25f;
+
+	private float angle;
 	private int currentSentenceIndex = 0;
 	private float startTime;
 	private float endTime;
@@ -51,8 +52,21 @@ public class ButtonSelection : MonoBehaviour
 	}
 
 
-	private void Update()
+	public void Update()
 	{
+		// Update the selection cooldown
+		lastSelectionTime -= Time.deltaTime;
+
+
+			float mouseX = Input.GetAxis ("Mouse X");
+			float mouseY = Input.GetAxis ("Mouse Y");
+
+			// Calculate the angle of the trackball input
+			angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
+			if (angle < 0)
+				angle += 360;
+	
+
 		// Selections from different buttons
 		SelectionfromA();
 		SelectionfromB();
@@ -129,7 +143,6 @@ public class ButtonSelection : MonoBehaviour
 
 
 
-	// ProcessKeyPress method checks the selected button and the pressed key to determine which character to write using the WriteCharacterToInputField method.
 	private void ProcessKeyPress()
 	{
 		// Check if the user presses the first character of a sentence
@@ -142,6 +155,7 @@ public class ButtonSelection : MonoBehaviour
 		if (selectedButton == buttons[(int)Keyname.KeyA] &&  Input.GetKeyDown(KeyCode.I))
 		{
 			WriteCharacterToInputField('a');
+			//inputField.text += buttons[(int)Keyname.KeyA].GetComponentsInChildren<ButtonText>();
 		}
 		else if (selectedButton == buttons[(int)Keyname.KeyB] && Input.GetKeyDown(KeyCode.I))
 		{
@@ -218,7 +232,6 @@ public class ButtonSelection : MonoBehaviour
 			EnterKeyFunctionality();
 
 			//WPM Calculation
-			// Stop the timer for text entry
 			endTime = Time.time;
 			// Calculate the text entry speed for the current sentence
 			float S = endTime - startTime;
@@ -261,92 +274,60 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of a
 	public void SelectionfromA()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f)
 		{
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2(mouseY, mouseX) * Mathf.Rad2Deg;
-			if (angle < 0)
-				angle += 360;
-
 			if (selectedButton == buttons[(int)Keyname.KeyA])
 			{
-				// here we are using the "angle==0" to maintain the current selection. because when we start the application angle is exactly zero.
-				//Such that if we make the "angle>=0" it will automatically change the selection from current selected button.
-				if (angle > 0.0f && angle <= 90.0f) 
+				if (angle > 20.0f && angle <= 90.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
-					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
+					lastSelectionTime = defaultSelectionTime; 
 				}
-				else if (angle > 90.0f &&  angle <= 155.0f)
+				else if (angle > 90.0f &&  angle <= 160.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 155.0f &&  angle <= 215.0f)
+				else if (angle > 160.0f &&  angle <= 215.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 215.0f &&  angle <= 310.0f)
+				else if (angle > 215.0f &&  angle <= 315.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 310.0f &&  angle <= 360.0f)
+				else if (angle > 0.0f &&  angle <= 20.0f || angle > 315.0f &&  angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
 		}
+		
 	}
 
 
 	// Selection for neighbours of b
 	public void SelectionfromB()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
 			if (selectedButton == buttons[(int)Keyname.KeyB])
 			{
-				if (angle > 0.0f && angle <= 40.0f)
+				if (angle > 0.0f && angle <= 60.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 40.0f && angle <= 90.0f)
+				else if (angle > 60.0f && angle <= 130.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
-				} 
-				else if (angle > 90.0f && angle <= 140.0f)
-				{
-					selectedButton = buttons[(int)Keyname.KeyJ];
-					lastSelectionTime = defaultSelectionTime;
-				} 
-				else if (angle > 140.0f && angle <= 200.0f)
+				}  
+				else if (angle > 130.0f && angle <= 200.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime;
@@ -371,34 +352,23 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of c
 	public void SelectionfromC()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f)
 		{
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2(mouseY, mouseX) * Mathf.Rad2Deg;
-			if (angle < 0)
-				angle += 360;
-
 			if (selectedButton == buttons[(int)Keyname.KeyC])
 			{
-				if (angle > 0.0f && angle <= 50.0f) 
+				if (angle > 0.0f && angle <= 25.0f || angle > 340.0f && angle <= 360.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				}
-				else if (angle > 50.0f &&  angle <= 110.0f)
+				else if (angle > 25.0f &&  angle <= 100.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 110.0f &&  angle <= 180)
+				else if (angle > 100.0f &&  angle <= 180)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime;
@@ -408,7 +378,7 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 270.0f &&  angle <= 360.0f)
+				else if (angle > 270.0f &&  angle <= 340.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
@@ -423,21 +393,8 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of d
 	public void SelectionfromD()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f)
 		{
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2(mouseY, mouseX) * Mathf.Rad2Deg;
-			if (angle < 0)
-				angle += 360;
-
 			if (selectedButton == buttons[(int)Keyname.KeyD])
 			{
 				if (angle > 0.0f && angle <= 65.0f) 
@@ -450,17 +407,17 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 140.0f &&  angle <= 200.0f )
+				else if (angle > 140.0f &&  angle <= 205.0f )
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 200.0f  &&  angle <= 260.0f)
+				else if (angle > 205.0f  &&  angle <= 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 260.0f &&  angle <= 360.0f)
+				else if (angle > 270.0f &&  angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
@@ -475,50 +432,32 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of E
 	public void SelectionfromE()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
 			if (selectedButton == buttons[(int)Keyname.KeyE])
 			{
-				if (angle > 0.0f && angle <= 40.0f)
+				if (angle > 0.0f && angle <= 55.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 40.0f && angle <= 80.0f)
-				{
-					selectedButton = buttons[(int)Keyname.KeyL];
-					lastSelectionTime = defaultSelectionTime;
-				} 
-				else if (angle > 80.0f && angle <= 120.0f)
+				else if (angle > 55.0f && angle <= 140.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 120.0f && angle <= 180.0f)
+				else if (angle > 10.0f && angle <= 182.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 180.0f && angle <= 270.0f) 
+				else if (angle > 182.0f && angle <= 255.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 270.0f && angle <= 360.0f)
+				else if (angle > 255.0f && angle <= 340.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
@@ -533,50 +472,37 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of F
 	public void SelectionfromF()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
+			
 			if (selectedButton == buttons[(int)Keyname.KeyF])
 			{
-				if (angle > 0.0f && angle <= 50.0f)
+				if (angle > 0.0f && angle <= 60.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 50.0f && angle <= 125.0f)
+				else if (angle > 60.0f && angle <= 120.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 125.0f && angle <= 180.0f)
+				else if (angle > 120.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 180.0f && angle <= 230.0f)
+				else if (angle > 180.0f && angle <= 220.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 230.0f && angle <= 310.0f) 
+				else if (angle > 220.0f && angle <= 315.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyG];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 310.0f && angle <= 360.0f)
+				else if (angle > 315.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
@@ -590,40 +516,27 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of G
 	public void SelectionfromG()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
+			
 			if (selectedButton == buttons[(int)Keyname.KeyG])
 			{
-				if (angle > 0.0f && angle <= 50.0f)
+				if (angle > 0.0f && angle <= 65.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 50.0f && angle <= 130.0f)
+				else if (angle > 65.0f && angle <= 130.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 130.0f && angle <= 190.0f)
+				else if (angle > 130.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 190.0f && angle <= 360.0f)
+				else if (angle > 180.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime;
@@ -638,40 +551,27 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of H
 	public void SelectionfromH()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
+		
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
 
 			if (selectedButton == buttons[(int)Keyname.KeyH])
 			{
-				if (angle > 0.0f && angle <= 40.0f)
+				if (angle > 0.0f && angle <= 35.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 40.0f && angle <= 90.0f)
+				else if (angle > 35.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 90.0f && angle <= 180.0f)
+				else if (angle > 90.0f && angle <= 190.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 180.0f && angle <= 270.0f)
+				else if (angle > 190.0f && angle <= 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime;
@@ -692,40 +592,28 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of I
 	public void SelectionfromI()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
 
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
 			if (selectedButton == buttons[(int)Keyname.KeyI])
 			{
-				if (angle > 0.0f && angle <= 45.0f)
+				if (angle > 0.0f && angle <= 30.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 45.0f && angle <= 100.0f)
+				else if (angle > 30.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 100.0f && angle <= 200.0f)
+				else if (angle > 130.0f && angle <= 230.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 200.0f && angle <= 360.0f)
+			else if (angle > 270.0f && angle <= 340.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
@@ -739,42 +627,31 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of J
 	public void SelectionfromJ()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
+		
 
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
 			if (selectedButton == buttons[(int)Keyname.KeyJ])
 			{
-				if (angle > 0.0f && angle <= 40.0f)
-				{
-					selectedButton = buttons[(int)Keyname.KeyC];
-					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
-				} 
-				else if (angle > 40.0f && angle <= 90.0f)
+				if (angle > 0.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
-					lastSelectionTime = defaultSelectionTime;
+					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 90.0f && angle <= 160.0f)
+				else if (angle > 90.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 160.0f && angle <= 360.0f)
+				else if (angle > 180.0f && angle <= 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 270.0f && angle <= 360.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
@@ -787,45 +664,32 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of K
 	public void SelectionfromK()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
+		
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
 
 			if (selectedButton == buttons[(int)Keyname.KeyK])
 			{
-				if (angle > 0.0f && angle <= 160.0f)
+				if (angle > 20.0f && angle <= 160.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyG];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 160.0f && angle <= 225.0f)
+				else if (angle > 160.0f && angle <= 215.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 225.0f && angle < 270.0f)
+				else if (angle > 215.0f && angle < 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 270.0f && angle <= 315.0f)
+				else if (angle > 270.0f && angle <= 325.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 315.0f && angle <= 360.0f)
+				else if (angle > 0.0f && angle <= 20.0f || angle > 325.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime;
@@ -840,21 +704,7 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of L
 	public void SelectionfromL()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
 
 			if (selectedButton == buttons[(int)Keyname.KeyL])
 			{
@@ -863,12 +713,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 90.0f && angle <= 170.0f)
+				else if (angle > 90.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 170.0f && angle <= 270.0f)
+				else if (angle > 180.0f && angle <= 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime;
@@ -891,40 +741,27 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of M
 	public void SelectionfromM()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
 		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
 
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
-
 			if (selectedButton == buttons[(int)Keyname.KeyM])
 			{
-				if (angle > 0.0f && angle <= 70.0f)
+				if (angle > 0.0f && angle <= 65.0f || angle > 300.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime; 
 				} 
-				else if (angle > 70.0f && angle <= 150.0f)
+				else if (angle > 65.0f && angle <= 155.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 150.0f && angle <= 210.0f)
+				else if (angle > 155.0f && angle <= 210.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 210.0f && angle <= 360.0f)
+				else if (angle > 210.0f && angle <= 300.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
@@ -939,35 +776,21 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of N
 	public void SelectionfromN()
 	{
-		// Update the selection cooldown
-		lastSelectionTime -= Time.deltaTime;
-
-		// Check if enough time has passed since the last selection change
 		if (lastSelectionTime <= 0.0f) {
-
-			float mouseX = Input.GetAxis ("Mouse X");
-			float mouseY = Input.GetAxis ("Mouse Y");
-
-			// Calculate the angle of the trackball input
-			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
-
-			if (angle < 0)
-				angle += 360;
-
 
 			if (selectedButton == buttons[(int)Keyname.KeyN])
 			{
-				if (angle > 0.0f && angle <= 80.0f)
+				if (angle > 0.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 80.0f && angle <= 140.0f)
+				else if (angle > 90.0f && angle <= 150.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 140.0f && angle <= 180.0f)
+				else if (angle > 150.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
@@ -977,10 +800,9 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyG];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 270.0f && angle <= 360.0f)
+				else if (angle > 290.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
-					Debug.Log (angle);
 					lastSelectionTime = defaultSelectionTime;
 				} 
 
