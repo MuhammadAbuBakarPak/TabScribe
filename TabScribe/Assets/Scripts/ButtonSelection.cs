@@ -317,27 +317,32 @@ public class ButtonSelection : MonoBehaviour
 
 			if (selectedButton == buttons[(int)Keyname.KeyB])
 			{
-				if (angle > 0.0f && angle <= 60.0f)
+				if (angle > 0.0f && angle <= 50.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 60.0f && angle <= 130.0f)
+				else if (angle > 50.0f && angle <= 95.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				}  
-				else if (angle > 130.0f && angle <= 200.0f)
+				else if (angle > 95.0f && angle <= 142.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyJ];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 142.0f && angle <= 200.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 200.0f && angle <= 280.0f) 
+				else if (angle > 200.0f && angle <= 275.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 280.0f && angle <= 360.0f)
+				else if (angle > 275.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
@@ -402,12 +407,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				}
-				else if (angle > 65.0f &&  angle <= 140.0f)
+				else if (angle > 65.0f &&  angle <= 135.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 140.0f &&  angle <= 205.0f )
+				else if (angle > 135.0f &&  angle <= 205.0f )
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
@@ -437,17 +442,22 @@ public class ButtonSelection : MonoBehaviour
 
 			if (selectedButton == buttons[(int)Keyname.KeyE])
 			{
-				if (angle > 0.0f && angle <= 55.0f ||  angle > 340.0f && angle <= 360.0f)
+				if (angle > 0.0f && angle <= 40.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 55.0f && angle <= 140.0f)
+				else if (angle > 40.0f && angle <= 75.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyL];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 75.0f && angle <= 140.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 10.0f && angle <= 182.0f)
+				else if (angle > 140.0f && angle <= 182.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
@@ -566,12 +576,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 90.0f && angle <= 190.0f)
+				else if (angle > 90.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 190.0f && angle <= 270.0f)
+				else if (angle > 180.0f && angle <= 270.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime;
@@ -598,22 +608,27 @@ public class ButtonSelection : MonoBehaviour
 
 			if (selectedButton == buttons[(int)Keyname.KeyI])
 			{
-				if (angle > 0.0f && angle <= 30.0f ||  angle > 340.0f && angle <= 360.0f)
+				if (angle > 0.0f && angle <= 20.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 30.0f && angle <= 90.0f)
+				else if (angle > 20.0f && angle <= 45.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyC];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 45.0f && angle <= 110.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 130.0f && angle <= 230.0f)
+				else if (angle > 110.0f && angle <= 250.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-			else if (angle > 270.0f && angle <= 340.0f)
+			else if (angle > 250.0f && angle <= 340.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
@@ -634,22 +649,27 @@ public class ButtonSelection : MonoBehaviour
 
 			if (selectedButton == buttons[(int)Keyname.KeyJ])
 			{
-				if (angle > 0.0f && angle <= 90.0f)
+				if (angle > 0.0f && angle <= 70.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 90.0f && angle <= 180.0f)
+				else if (angle > 70.0f && angle <= 180.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 180.0f && angle <= 270.0f)
+				else if (angle > 180.0f && angle <= 240.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 270.0f && angle <= 360.0f)
+				else if (angle > 240.0f && angle <= 300.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyB];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 300.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
@@ -718,12 +738,17 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 180.0f && angle <= 270.0f)
+				else if (angle > 180.0f && angle <= 230.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 270.0f && angle <= 360.0f)
+				else if (angle > 230.0f && angle <= 280.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyE];
+					lastSelectionTime = defaultSelectionTime;
+				} 
+				else if (angle > 280.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime;
@@ -751,12 +776,17 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyI];
 					lastSelectionTime = defaultSelectionTime; 
 				} 
-				else if (angle > 65.0f && angle <= 155.0f)
+				else if (angle > 65.0f && angle <= 145.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
 				} 
-				else if (angle > 155.0f && angle <= 210.0f)
+				else if (angle > 145.0f && angle <= 175.0f)
+				{
+					selectedButton = buttons[(int)Keyname.KeyD];
+					lastSelectionTime = defaultSelectionTime; // Reset the selection cooldown
+				} 
+				else if (angle > 175.0f && angle <= 210.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
@@ -795,12 +825,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
 				}
-				else if (angle > 180.0f && angle <= 270.0f)
+				else if (angle > 180.0f && angle <= 275.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyG];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-				else if (angle > 290.0f && angle <= 360.0f)
+				else if (angle > 275.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime;
