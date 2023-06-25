@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine.EventSystems;
+
 
 public class ButtonSelection : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class ButtonSelection : MonoBehaviour
 	private const float defaultSelectionTime = 0.25f;
 
 	private float angle;
+	private TextMeshProUGUI buttonText; 
 	private int currentSentenceIndex = 0;
 	private float startTime;
 	private float endTime;
@@ -143,6 +144,8 @@ public class ButtonSelection : MonoBehaviour
 
 
 
+
+
 	private void ProcessKeyPress()
 	{
 		// Check if the user presses the first character of a sentence
@@ -152,65 +155,13 @@ public class ButtonSelection : MonoBehaviour
 			startTime = Time.time;
 		}
 
-		if (selectedButton == buttons[(int)Keyname.KeyA] &&  Input.GetKeyDown(KeyCode.I))
+		if (selectedButton != null && Input.GetKeyDown(KeyCode.I))
 		{
-			WriteCharacterToInputField('a');
-			//inputField.text += buttons[(int)Keyname.KeyA].GetComponentsInChildren<ButtonText>();
+			buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
+			string character = buttonText.text;
+			inputField.text += character.ToString();
 		}
-		else if (selectedButton == buttons[(int)Keyname.KeyB] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('b');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyC] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('c');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyD] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('d');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyE] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('e');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyF] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('f');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyG] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('g');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyH] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('h');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyI] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('i');
-		}
-
-		else if (selectedButton == buttons[(int)Keyname.KeyJ] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('j');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyK] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('k');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyL] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('l');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyM] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('m');
-		}
-		else if (selectedButton == buttons[(int)Keyname.KeyN] && Input.GetKeyDown(KeyCode.I))
-		{
-			WriteCharacterToInputField('n');
-		}
-
+			
 		// Handle backspace key
 		if (Input.GetKeyDown(KeyCode.Backspace))
 		{
@@ -240,6 +191,9 @@ public class ButtonSelection : MonoBehaviour
 		}
 
 	}
+
+
+
 
 	//Perform Enter Key Functionality
 	private void EnterKeyFunctionality()
