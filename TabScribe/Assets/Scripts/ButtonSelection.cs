@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
@@ -50,46 +51,54 @@ public class ButtonSelection : MonoBehaviour
 		{
 			originalColor = buttonRenderer.material.color;
 		}
+			
+
+
 	}
 
 
 	public void Update()
 	{
+		inputField.ActivateInputField();
+
 		// Update the selection cooldown
 		lastSelectionTime -= Time.deltaTime;
 
-
+		if (lastSelectionTime <= 0.0f)
+		{
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
 
-			// Calculate the angle of the trackball input
 			angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
 			if (angle < 0)
 				angle += 360;
+		}
 	
-
-		// Selections from different buttons
-		SelectionfromA();
-		SelectionfromB();
-		SelectionfromC();
-		SelectionfromD();
-		SelectionfromE();
-		SelectionfromF();
-		SelectionfromG();
-		SelectionfromH();
-		SelectionfromI();
-		SelectionfromJ();
-		SelectionfromK();
-		SelectionfromL();
-		SelectionfromM();
-		SelectionfromN();
+			// Selections from different buttons
+			SelectionfromA ();
+			SelectionfromB ();
+			SelectionfromC ();
+			SelectionfromD ();
+			SelectionfromE ();
+			SelectionfromF ();
+			SelectionfromG ();
+			SelectionfromH ();
+			SelectionfromI ();
+			SelectionfromJ ();
+			SelectionfromK ();
+			SelectionfromL ();
+			SelectionfromM ();
+			SelectionfromN ();
+		
 		// Change the color of the selected button
 		ChangeButtonColor(selectedButton);
+
 	}
 
 	private void LateUpdate()
 	{
 		ProcessKeyPress();
+		inputField.MoveToEndOfLine(false, false);
 	}
 
 
@@ -155,7 +164,7 @@ public class ButtonSelection : MonoBehaviour
 			startTime = Time.time;
 		}
 
-		if (selectedButton != null && Input.GetKeyDown(KeyCode.I))
+		if (selectedButton != null && Input.GetKeyDown(KeyCode.UpArrow))
 		{
 			buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
@@ -228,8 +237,7 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of a
 	public void SelectionfromA()
 	{
-		if (lastSelectionTime <= 0.0f)
-		{
+		
 			if (selectedButton == buttons[(int)Keyname.KeyA])
 			{
 				if (angle > 20.0f && angle <= 90.0f) 
@@ -258,7 +266,7 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
+		
 		
 	}
 
@@ -266,8 +274,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of b
 	public void SelectionfromB()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyB])
 			{
@@ -302,7 +308,6 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
 	}
 
 
@@ -311,9 +316,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of c
 	public void SelectionfromC()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f)
-		{
 
 			if (selectedButton == buttons[(int)Keyname.KeyC])
 			{
@@ -343,7 +345,7 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
+
 	}
 
 
@@ -352,8 +354,7 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of d
 	public void SelectionfromD()
 	{
-		if (lastSelectionTime <= 0.0f)
-		{
+
 			if (selectedButton == buttons[(int)Keyname.KeyD])
 			{
 				if (angle > 0.0f && angle <= 65.0f) 
@@ -382,7 +383,7 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
+
 	}
 
 
@@ -391,8 +392,7 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of E
 	public void SelectionfromE()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
+		
 
 			if (selectedButton == buttons[(int)Keyname.KeyE])
 			{
@@ -427,7 +427,6 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
 	}
 
 
@@ -436,8 +435,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of F
 	public void SelectionfromF()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
 			
 			if (selectedButton == buttons[(int)Keyname.KeyF])
 			{
@@ -472,7 +469,7 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				}
 			}
-		}
+
 	}
 
 
@@ -480,9 +477,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of G
 	public void SelectionfromG()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
-			
 			if (selectedButton == buttons[(int)Keyname.KeyG])
 			{
 				if (angle > 0.0f && angle <= 65.0f)
@@ -506,7 +500,6 @@ public class ButtonSelection : MonoBehaviour
 					lastSelectionTime = defaultSelectionTime;
 				} 
 			}
-		}
 	}
 
 
@@ -515,8 +508,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of H
 	public void SelectionfromH()
 	{
-		
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyH])
 			{
@@ -547,7 +538,7 @@ public class ButtonSelection : MonoBehaviour
 				} 
 
 			}
-		}
+
 	}
 
 
@@ -556,9 +547,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of I
 	public void SelectionfromI()
 	{
-
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyI])
 			{
@@ -589,17 +577,13 @@ public class ButtonSelection : MonoBehaviour
 				} 
 
 			}
-		}
+
 	}
 
 
 	// Selection for neighbours of J
 	public void SelectionfromJ()
 	{
-		
-
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyJ])
 			{
@@ -630,7 +614,6 @@ public class ButtonSelection : MonoBehaviour
 				} 
 
 			}
-		}
 	}
 
 
@@ -638,8 +621,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of K
 	public void SelectionfromK()
 	{
-		
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyK])
 			{
@@ -670,7 +651,6 @@ public class ButtonSelection : MonoBehaviour
 				} 
 
 			}
-		}
 	}
 
 
@@ -678,7 +658,6 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of L
 	public void SelectionfromL()
 	{
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyL])
 			{
@@ -710,7 +689,6 @@ public class ButtonSelection : MonoBehaviour
 
 
 			}
-		}
 	}
 
 
@@ -720,8 +698,7 @@ public class ButtonSelection : MonoBehaviour
 	// Selection for neighbours of M
 	public void SelectionfromM()
 	{
-		// Check if enough time has passed since the last selection change
-		if (lastSelectionTime <= 0.0f) {
+		
 
 			if (selectedButton == buttons[(int)Keyname.KeyM])
 			{
@@ -753,14 +730,12 @@ public class ButtonSelection : MonoBehaviour
 
 
 			}
-		}
 	}
 
 
 	// Selection for neighbours of N
 	public void SelectionfromN()
 	{
-		if (lastSelectionTime <= 0.0f) {
 
 			if (selectedButton == buttons[(int)Keyname.KeyN])
 			{
@@ -792,7 +767,6 @@ public class ButtonSelection : MonoBehaviour
 
 
 			}
-		}
 	}
 
 
