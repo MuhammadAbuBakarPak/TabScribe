@@ -21,15 +21,15 @@ public class ButtonSelection : MonoBehaviour
 
 	private const float defaultSelectionTime = 0.25f;
 
-	private float angle;
-	private TextMeshProUGUI buttonText; 
-	private int currentSentenceIndex = 0;
+	//private float angle;
+	//private TextMeshProUGUI buttonText;
+	private float lastSelectionTime = defaultSelectionTime;
 	private float startTime;
 	private float endTime;
 	private int T;
 	private GameObject selectedButton; 
 	private Color originalColor;
-	private float lastSelectionTime = defaultSelectionTime;
+	private int currentSentenceIndex = 0;
 	private string[] sentences = {
 		"a bad fig jam",
 		"ben can hang a bag",
@@ -44,54 +44,58 @@ public class ButtonSelection : MonoBehaviour
 	{
 		selectedButton = buttons[(int)Keyname.KeyA]; 		
 		textField.text = sentences[currentSentenceIndex];
-
-		// Get the original color of the button
-		Renderer buttonRenderer = selectedButton.GetComponent<Renderer>();
-		if (buttonRenderer != null)
-		{
-			originalColor = buttonRenderer.material.color;
-		}
-			
-
-
 	}
 
 
 	public void Update()
 	{
-		inputField.ActivateInputField();
-
 		// Update the selection cooldown
 		lastSelectionTime -= Time.deltaTime;
 
-		if (lastSelectionTime <= 0.0f)
-		{
 			float mouseX = Input.GetAxis ("Mouse X");
 			float mouseY = Input.GetAxis ("Mouse Y");
 
-			angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
+			float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
 			if (angle < 0)
 				angle += 360;
+
+		if (lastSelectionTime <= 0.0f) 
+		{
+			if (selectedButton == buttons [(int)Keyname.KeyA]) {
+				SelectionfromA (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyB]) {
+				SelectionfromB (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyC]) {
+				SelectionfromC (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyD]) {
+				SelectionfromD (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyE]) {
+				SelectionfromE (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyF]) {
+				SelectionfromF (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyG]) {
+				SelectionfromG (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyH]) {
+				SelectionfromH (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyI]) {
+				SelectionfromI (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyJ]) {
+				SelectionfromJ (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyK]) {
+				SelectionfromK (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyL]) {
+				SelectionfromL (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyM]) {
+				SelectionfromM (angle);
+			} else if (selectedButton == buttons [(int)Keyname.KeyN]) {
+				SelectionfromN (angle);
+			}
 		}
-	
-			// Selections from different buttons
-			SelectionfromA ();
-			SelectionfromB ();
-			SelectionfromC ();
-			SelectionfromD ();
-			SelectionfromE ();
-			SelectionfromF ();
-			SelectionfromG ();
-			SelectionfromH ();
-			SelectionfromI ();
-			SelectionfromJ ();
-			SelectionfromK ();
-			SelectionfromL ();
-			SelectionfromM ();
-			SelectionfromN ();
 		
+
 		// Change the color of the selected button
 		ChangeButtonColor(selectedButton);
+		inputField.ActivateInputField();
 
 	}
 
@@ -123,22 +127,15 @@ public class ButtonSelection : MonoBehaviour
 
 	private void SetButtonColor(GameObject button, Color color)
 	{
-		MeshRenderer[] renderers = button.GetComponentsInChildren<MeshRenderer>();
+		MeshRenderer[] renderers = button.GetComponents<MeshRenderer>();
 		foreach (MeshRenderer renderer in renderers)
 		{
 			renderer.material.color = color;
 		}
 	}
 
-	private Color GetButtonColor(GameObject button)
-	{
-		MeshRenderer[] renderers = button.GetComponentsInChildren<MeshRenderer>();
-		if (renderers.Length > 0)
-		{
-			return renderers[0].material.color;
-		}
-		return Color.white;
-	}
+
+
 
 	// Write character into input field
 	private void WriteCharacterToInputField(char character)
@@ -161,12 +158,12 @@ public class ButtonSelection : MonoBehaviour
 		if (Input.anyKeyDown && T == 0)
 		{
 			// Start the timer for text entry
-			startTime = Time.time;
+			 startTime = Time.time;
 		}
 
-		if (selectedButton != null && Input.GetKeyDown(KeyCode.UpArrow))
+		if (selectedButton != null && Input.GetKeyDown(KeyCode.F1))
 		{
-			buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
+			TextMeshProUGUI buttonText = selectedButton.GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
 			inputField.text += character.ToString();
 		}
@@ -235,11 +232,8 @@ public class ButtonSelection : MonoBehaviour
 
 
 	// Selection for neighbours of a
-	public void SelectionfromA()
+	public void SelectionfromA(float angle)
 	{
-		
-			if (selectedButton == buttons[(int)Keyname.KeyA])
-			{
 				if (angle > 20.0f && angle <= 90.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
@@ -265,18 +259,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
-		
-		
 	}
 
 
 	// Selection for neighbours of b
-	public void SelectionfromB()
+	public void SelectionfromB(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyB])
-			{
 				if (angle > 0.0f && angle <= 50.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyA];
@@ -307,18 +295,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyF];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
 	}
 
 
 
 
 	// Selection for neighbours of c
-	public void SelectionfromC()
+	public void SelectionfromC(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyC])
-			{
 				if (angle > 0.0f && angle <= 25.0f || angle > 340.0f && angle <= 360.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyD];
@@ -344,19 +328,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyA];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
-
 	}
 
 
 
 
 	// Selection for neighbours of d
-	public void SelectionfromD()
+	public void SelectionfromD(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyD])
-			{
 				if (angle > 0.0f && angle <= 65.0f) 
 				{
 					selectedButton = buttons[(int)Keyname.KeyL];
@@ -382,20 +361,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyE];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
-
 	}
 
 
 
 
 	// Selection for neighbours of E
-	public void SelectionfromE()
+	public void SelectionfromE(float angle)
 	{
-		
-
-			if (selectedButton == buttons[(int)Keyname.KeyE])
-			{
 				if (angle > 0.0f && angle <= 40.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
@@ -426,18 +399,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
 	}
 
 
 
 
 	// Selection for neighbours of F
-	public void SelectionfromF()
+	public void SelectionfromF(float angle)
 	{
-			
-			if (selectedButton == buttons[(int)Keyname.KeyF])
-			{
 				if (angle > 0.0f && angle <= 60.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyE];
@@ -468,17 +437,13 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
 				}
-			}
-
 	}
 
 
 
 	// Selection for neighbours of G
-	public void SelectionfromG()
+	public void SelectionfromG(float angle)
 	{
-			if (selectedButton == buttons[(int)Keyname.KeyG])
-			{
 				if (angle > 0.0f && angle <= 65.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyN];
@@ -499,18 +464,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyK];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-			}
 	}
 
 
 
 
 	// Selection for neighbours of H
-	public void SelectionfromH()
+	public void SelectionfromH(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyH])
-			{
 				if (angle > 0.0f && angle <= 35.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyF];
@@ -536,20 +497,14 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyG];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-			}
-
 	}
 
 
 
 
 	// Selection for neighbours of I
-	public void SelectionfromI()
+	public void SelectionfromI(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyI])
-			{
 				if (angle > 0.0f && angle <= 20.0f ||  angle > 340.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyB];
@@ -575,18 +530,13 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyH];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-			}
-
 	}
 
 
 	// Selection for neighbours of J
-	public void SelectionfromJ()
+	public void SelectionfromJ(float angle)
 	{
 
-			if (selectedButton == buttons[(int)Keyname.KeyJ])
-			{
 				if (angle > 0.0f && angle <= 70.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyK];
@@ -612,18 +562,13 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyC];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-			}
 	}
 
 
 
 	// Selection for neighbours of K
-	public void SelectionfromK()
+	public void SelectionfromK(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyK])
-			{
 				if (angle > 20.0f && angle <= 160.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyG];
@@ -649,18 +594,13 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyL];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-			}
 	}
 
 
 
 	// Selection for neighbours of L
-	public void SelectionfromL()
+	public void SelectionfromL(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyL])
-			{
 				if (angle > 0.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyH];
@@ -686,9 +626,6 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyM];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-
-			}
 	}
 
 
@@ -696,12 +633,8 @@ public class ButtonSelection : MonoBehaviour
 
 
 	// Selection for neighbours of M
-	public void SelectionfromM()
+	public void SelectionfromM(float angle)
 	{
-		
-
-			if (selectedButton == buttons[(int)Keyname.KeyM])
-			{
 				if (angle > 0.0f && angle <= 65.0f || angle > 300.0f && angle <= 360.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyI];
@@ -727,18 +660,12 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyN];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-
-			}
 	}
 
 
 	// Selection for neighbours of N
-	public void SelectionfromN()
+	public void SelectionfromN(float angle)
 	{
-
-			if (selectedButton == buttons[(int)Keyname.KeyN])
-			{
 				if (angle > 0.0f && angle <= 90.0f)
 				{
 					selectedButton = buttons[(int)Keyname.KeyM];
@@ -764,9 +691,6 @@ public class ButtonSelection : MonoBehaviour
 					selectedButton = buttons[(int)Keyname.KeyJ];
 					lastSelectionTime = defaultSelectionTime;
 				} 
-
-
-			}
 	}
 
 
