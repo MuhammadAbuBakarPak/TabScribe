@@ -123,6 +123,10 @@ public class ButtonSelection : MonoBehaviour
 	}
 
 
+
+
+
+
 	//Button Color Changing Mechanism
 	private void ChangeButtonColor(GameObject button)
 	{
@@ -153,11 +157,10 @@ public class ButtonSelection : MonoBehaviour
 	// Write character into input field
 	private void WriteCharacterToInputField(char character)
 	{
-		if (inputField != null)
-		{
+
 			inputField.text += character;
-			T = inputField.text.Length; // Update the length of the transcribed string
-		}
+			//T = inputField.text.Length; // Update the length of the transcribed string
+
 	}
 
 
@@ -177,8 +180,8 @@ public class ButtonSelection : MonoBehaviour
 		if (selectedButton != null && Input.GetKeyDown(KeyCode.F1))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButton].GetComponentInChildren<TextMeshProUGUI>();
-			string character = buttonText.text;
-			inputField.text += character;
+			//string character = buttonText.text;
+			inputField.text += buttonText.text;
 		}
 
 		// Handle backspace key
