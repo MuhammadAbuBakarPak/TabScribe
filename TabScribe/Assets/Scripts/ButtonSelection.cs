@@ -153,7 +153,7 @@ public class ButtonSelection : MonoBehaviour
 	}
 
 
-
+	/*
 	// Write character into input field
 	private void WriteCharacterToInputField(char character)
 	{
@@ -162,7 +162,7 @@ public class ButtonSelection : MonoBehaviour
 			//T = inputField.text.Length; // Update the length of the transcribed string
 
 	}
-
+	*/
 
 
 
@@ -196,7 +196,8 @@ public class ButtonSelection : MonoBehaviour
 		// Handle space key
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			WriteCharacterToInputField(' ');
+			inputField.text += ' ';
+			//WriteCharacterToInputField(' ');
 		}
 
 		// Handle the "Enter" key press
