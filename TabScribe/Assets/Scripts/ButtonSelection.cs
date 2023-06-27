@@ -22,12 +22,12 @@ public class ButtonSelection : MonoBehaviour
 
 	private const float defaultSelectionTime = 0.25f;
 
-	//private float angle;
-	//private TextMeshProUGUI buttonText;
-	private float lastSelectionTime = defaultSelectionTime;
 	float startTime;
 	float endTime;
 	int T;
+	//private float angle;
+	//private TextMeshProUGUI buttonText;
+	private float lastSelectionTime = defaultSelectionTime;
 	private Keyname selectedButton; 
 	private int currentSentenceIndex = 0;
 	private string[] sentences = {
@@ -153,23 +153,13 @@ public class ButtonSelection : MonoBehaviour
 	}
 
 
-	/*
-	// Write character into input field
-	private void WriteCharacterToInputField(char character)
-	{
-
-			inputField.text += character;
-			//T = inputField.text.Length; // Update the length of the transcribed string
-
-	}
-	*/
-
 
 
 
 
 	private void ProcessKeyPress()
 	{
+		
 		// Check if the user presses the first character of a sentence
 		if (Input.anyKeyDown && T == 0)
 		{
@@ -180,8 +170,8 @@ public class ButtonSelection : MonoBehaviour
 		if (selectedButton != null && Input.GetKeyDown(KeyCode.F1))
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButton].GetComponentInChildren<TextMeshProUGUI>();
-			//string character = buttonText.text;
-			inputField.text += buttonText.text;
+			string textOnButton = buttonText.text;
+			inputField.Append(textOnButton);
 		}
 
 		// Handle backspace key
@@ -197,7 +187,6 @@ public class ButtonSelection : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			inputField.text += ' ';
-			//WriteCharacterToInputField(' ');
 		}
 
 		// Handle the "Enter" key press
