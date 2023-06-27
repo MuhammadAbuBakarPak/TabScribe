@@ -15,6 +15,7 @@ public class ButtonSelection : MonoBehaviour
 	public TMP_InputField inputField;
 	public TextMeshProUGUI textField;
 	public Color selectedColor;
+	public Color originalColor;
 	public GameObject[] buttons;
 
 
@@ -28,7 +29,6 @@ public class ButtonSelection : MonoBehaviour
 	float endTime;
 	int T;
 	private Keyname selectedButton; 
-	private Color originalColor;
 	private int currentSentenceIndex = 0;
 	private string[] sentences = {
 		"a bad fig jam",
@@ -123,9 +123,6 @@ public class ButtonSelection : MonoBehaviour
 	}
 
 
-
-
-
 	//Button Color Changing Mechanism
 	private void ChangeButtonColor(GameObject button)
 	{
@@ -153,13 +150,12 @@ public class ButtonSelection : MonoBehaviour
 
 
 
-
 	// Write character into input field
 	private void WriteCharacterToInputField(char character)
 	{
 		if (inputField != null)
 		{
-			inputField.text += character.ToString();
+			inputField.text += character;
 			T = inputField.text.Length; // Update the length of the transcribed string
 		}
 	}
@@ -182,7 +178,7 @@ public class ButtonSelection : MonoBehaviour
 		{
 			TextMeshProUGUI buttonText = buttons[(int)selectedButton].GetComponentInChildren<TextMeshProUGUI>();
 			string character = buttonText.text;
-			inputField.text += character.ToString();
+			inputField.text += character;
 		}
 
 		// Handle backspace key
