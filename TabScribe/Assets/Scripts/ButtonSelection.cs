@@ -15,6 +15,7 @@ public class ButtonSelection : MonoBehaviour
 	public TextMeshProUGUI textField;
 	public GameObject[] buttons;
 
+	private const float movementThreshold = 0.5f;
 	private const float defaultSelectionTime = 0.25f;
 	private float lastSelectionTime = defaultSelectionTime;
 
@@ -57,7 +58,7 @@ public class ButtonSelection : MonoBehaviour
 		if (angle < 0)
 			angle += 360;
 
-		if (lastSelectionTime <= 0.0f) 
+		if (lastSelectionTime <= 0.0f && Mathf.Abs(angle) > movementThreshold) 
 		{
 			switch (selectedButton)
 			{
@@ -231,10 +232,10 @@ public class ButtonSelection : MonoBehaviour
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		else// if ((angle > 0.0f &&  angle <= 20.0f) || (angle > 315.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 20.0f) || (angle > 315.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyE;
-			Debug.Log (angle);
+
 		}
 
 		lastSelectionTime = defaultSelectionTime; 
@@ -242,7 +243,6 @@ public class ButtonSelection : MonoBehaviour
 		SetButtonColor(buttons[(int)Keyname.KeyA], originalColor); 
 		SetButtonColor(buttons[(int)selectedButton], selectedColor);
 	}
-
 
 	// Selection for neighbours of b
 	public void SelectionfromB(float angle)
@@ -278,7 +278,7 @@ public class ButtonSelection : MonoBehaviour
 		SetButtonColor(buttons[(int)selectedButton], selectedColor);
 	}
 
-
+	
 
 
 	// Selection for neighbours of c
