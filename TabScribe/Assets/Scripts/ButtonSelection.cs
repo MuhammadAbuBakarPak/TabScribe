@@ -15,7 +15,7 @@ public class ButtonSelection : MonoBehaviour
 	public TextMeshProUGUI textField;
 	public GameObject[] buttons;
 
-	private const float movementThreshold = 0.5f;
+	private const float moveThreshold = 1.0e-10f;
 	private const float defaultSelectionTime = 0.25f;
 	private float lastSelectionTime = defaultSelectionTime;
 
@@ -53,12 +53,13 @@ public class ButtonSelection : MonoBehaviour
 
 		float mouseX = Input.GetAxis ("Mouse X");
 		float mouseY = Input.GetAxis ("Mouse Y");
+		float sqrLength = mouseX * mouseX + mouseY * mouseY;
 
 		float angle = Mathf.Atan2 (mouseY, mouseX) * Mathf.Rad2Deg;
 		if (angle < 0)
 			angle += 360;
 
-		if (lastSelectionTime <= 0.0f && Mathf.Abs(angle) > movementThreshold) 
+		if (lastSelectionTime <= 0.0f && sqrLength > moveThreshold) 
 		{
 			switch (selectedButton)
 			{
@@ -133,8 +134,7 @@ public class ButtonSelection : MonoBehaviour
 
 	private void ProcessKeyPress()
 	{
-		int T = inputField.text.Length;
-		if (Input.anyKeyDown && T == 0 && startTime == 0.0f)
+		if (Input.anyKeyDown && inputField.text.Length == 0 && startTime == 0.0f)
 		{
 			// Start the timer for text entry
 			startTime = Time.time;
@@ -168,10 +168,10 @@ public class ButtonSelection : MonoBehaviour
 			EnterKeyFunctionality();
 
 			//WPM Calculation
-			float endTime = Time.time;
+			//float endTime = Time.time;
 			// Calculate the text entry speed for the current sentence
-			float S = endTime - startTime;
-			float wordsPerMinute = (T - 1) / S * 60f * 0.2f;
+			float elapsedTime = Time.time - startTime;
+			float wordsPerMinute = (inputField.text.Length - 1) / elapsedTime * 60.0f * 0.2f;
 			Debug.LogFormat("Text Entry Speed (Sentence {0}): {1} WPM", currentSentenceIndex, wordsPerMinute);
 
 			// Reset start time
