@@ -19,8 +19,8 @@ public class ButtonSelection : MonoBehaviour
 	private const float defaultSelectionTime = 0.25f;
 	private float lastSelectionTime = defaultSelectionTime;
 
-	private Color originalColor;	
 	private Color selectedColor = new Color(0.055f, 0.561f, 0.243f);
+	private Color originalColor;
 	private Keyname selectedButton;
 
 	private float startTime = 0.0f;
