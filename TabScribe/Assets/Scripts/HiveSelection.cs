@@ -235,27 +235,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of A
 	public void SelectionfromA(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyD;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyC;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyB;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyG;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyE;
 		}
@@ -270,27 +270,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of B
 	public void SelectionfromB(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyC;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyJ;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyI;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyH;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyG;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyA;
 		}
@@ -304,27 +304,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of C
 	public void SelectionfromC(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyL;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyK;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyJ;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyB;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyA;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyD;
 		}
@@ -339,27 +339,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of D
 	public void SelectionfromD(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyM;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyL;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyC;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyA;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyE;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyN;
 		}
@@ -373,27 +373,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of E
 	public void SelectionfromE(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyN;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyD;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyA;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyP;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyO;
 		}
@@ -407,27 +407,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of F
 	public void SelectionfromF(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyE;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyA;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyG;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyR;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyQ;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyP;
 		}
@@ -441,27 +441,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of G
 	public void SelectionfromG(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyA;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyB;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyH;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyS;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyR;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyF;
 		}
@@ -475,27 +475,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of H
 	public void SelectionfromH(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyB;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyI;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyP;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
-			selectedButton = Keyname.KeyN;
+			selectedButton = Keyname.KeyL;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyS;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyG;
 		}
@@ -510,19 +510,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of I
 	public void SelectionfromI(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyJ;
 		}
-		else if (angle > 90.0f &&  angle <= 270.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
+		{
+			selectedButton = Keyname.KeyS;
+		}
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyO;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
+		{
+			selectedButton = Keyname.KeyK;
+		}
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyH;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyB;
 		}
@@ -537,23 +545,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of J
 	public void SelectionfromJ(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyK;
 		}
-		else if (angle > 90.0f &&  angle <= 200.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
+		{
+			selectedButton = Keyname.KeyR;
+		}
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyN;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyI;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyB;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyC;
 		}
@@ -568,23 +580,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of K
 	public void SelectionfromK(float angle)
 	{
-		if (angle > 27.0f && angle <= 155.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
-			selectedButton = Keyname.KeyS;
+			selectedButton = Keyname.KeyI;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
+		{
+			selectedButton = Keyname.KeyQ;
+		}
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyM;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyJ;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyC;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyL;
 		}
@@ -598,23 +614,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of L
 	public void SelectionfromL(float angle)
 	{
-		if (angle > 27.0f && angle <= 155.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
-			selectedButton = Keyname.KeyR;
+			selectedButton = Keyname.KeyH;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 90.0f &&  angle <= 150.0f)
+		{
+			selectedButton = Keyname.KeyP;
+		}
+		else if (angle > 150.0f &&  angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyK;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f &&  angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyC;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f &&  angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyD;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyM;
 		}
@@ -628,23 +648,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of M
 	public void SelectionfromM(float angle)
 	{
-		if (angle > 27.0f && angle <= 155.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
-			selectedButton = Keyname.KeyQ;
+			selectedButton = Keyname.KeyS;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 90.0f && angle <= 150.0f)
+		{
+			selectedButton = Keyname.KeyO;
+		}
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyL;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyD;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f && angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyN;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyK;
 		}
@@ -659,23 +683,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of N
 	public void SelectionfromN(float angle)
 	{
-		if (angle > 40.0f && angle <= 155.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
+		{
+			selectedButton = Keyname.KeyR;
+		}
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyM;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyD;
 		}
-		else if (angle > 200.0f &&  angle <= 270.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyE;
 		}
-		else if (angle > 270.0f &&  angle <= 337.0f)
+		else if (angle > 270.0f && angle <= 330.0f)
 		{
 			selectedButton = Keyname.KeyO;
 		}
-		else //if ((angle > 0.0f &&  angle <= 40.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyJ;
 		}
@@ -689,19 +717,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of O
 	public void SelectionfromO(float angle)
 	{
-		if (angle > 55.0f && angle <= 155.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
+		{
+			selectedButton = Keyname.KeyQ;
+		}
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyN;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyE;
 		}
-		else if (angle > 200.0f &&  angle <= 310.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyP;
 		}
-		else //if ((angle > 0.0f &&  angle <= 55.0f) || (angle > 310.0f &&  angle <= 360.0f))
+		else if (angle > 270.0f && angle <= 330.0f)
+		{
+			selectedButton = Keyname.KeyM;
+		}
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyI;
 		}
@@ -716,23 +752,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of P
 	public void SelectionfromP(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyO;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyE;
 		}
-		else if (angle > 155.0f &&  angle <= 200.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		else if (angle > 200.0f &&  angle <= 310.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
 			selectedButton = Keyname.KeyQ;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 310.0f &&  angle <= 360.0f))
+		else if (angle > 270.0f && angle <= 330.0f)
+		{
+			selectedButton = Keyname.KeyL;
+		}
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyH;
 		}
@@ -747,23 +787,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of Q
 	public void SelectionfromQ(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyP;
 		}
-		else if (angle > 90.0f &&  angle <= 155.0f)
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		else if (angle > 155.0f &&  angle <= 210.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyR;
 		}
-		else if (angle > 210.0f &&  angle <= 310.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
-			selectedButton = Keyname.KeyM;
+			selectedButton = Keyname.KeyO;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 310.0f &&  angle <= 360.0f))
+		else if (angle > 270.0f && angle <= 330.0f)
+		{
+			selectedButton = Keyname.KeyK;
+		}
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyS;
 		}
@@ -778,23 +822,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of R
 	public void SelectionfromR(float angle)
 	{
-		if (angle > 27.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyF;
 		}
-		if (angle > 90.0f && angle <= 155.0f) 
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyG;
 		}
-		else if (angle > 155.0f &&  angle <= 210.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyS;
 		}
-		else if (angle > 210.0f &&  angle <= 310.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
-			selectedButton = Keyname.KeyL;
+			selectedButton = Keyname.KeyN;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else if (angle > 270.0f && angle <= 330.0f)
+		{
+			selectedButton = Keyname.KeyJ;
+		}
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyQ;
 		}
@@ -809,52 +857,27 @@ public class HiveSelection : MonoBehaviour
 	// Selection for neighbours of S
 	public void SelectionfromS(float angle)
 	{
-		if (angle >20.0f && angle <= 90.0f) 
+		if (angle > 30.0f && angle <= 90.0f) 
 		{
 			selectedButton = Keyname.KeyG;
 		}
-		if (angle > 90.0f && angle <= 200.0f) 
+		else if (angle > 90.0f && angle <= 150.0f)
 		{
 			selectedButton = Keyname.KeyH;
 		}
-		else if (angle > 200.0f &&  angle <= 310.0f)
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyR;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyS], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-
-	/*
-	// Selection for neighbours of S
-	public void SelectionfromS(float angle)
-	{
-		if (angle > 27.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		if (angle > 90.0f && angle <= 155.0f) 
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else if (angle > 155.0f &&  angle <= 210.0f)
+		else if (angle > 150.0f && angle <= 210.0f)
 		{
 			selectedButton = Keyname.KeyQ;
 		}
-		else if (angle > 210.0f &&  angle <= 310.0f)
+		else if (angle > 210.0f && angle <= 270.0f)
 		{
-			selectedButton = Keyname.KeyK;
+			selectedButton = Keyname.KeyM;
 		}
-		else //if ((angle > 0.0f &&  angle <= 27.0f) || (angle > 337.0f &&  angle <= 360.0f))
+		else if (angle > 270.0f && angle <= 330.0f)
+		{
+			selectedButton = Keyname.KeyI;
+		}
+		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
 		{
 			selectedButton = Keyname.KeyR;
 		}
@@ -864,7 +887,7 @@ public class HiveSelection : MonoBehaviour
 		SetButtonColor(buttons[(int)Keyname.KeyS], originalColor); 
 		SetButtonColor(buttons[(int)selectedButton], selectedColor);
 	}
-	*/	
+		
 
 }
 
