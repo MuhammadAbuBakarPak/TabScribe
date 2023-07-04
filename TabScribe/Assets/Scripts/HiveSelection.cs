@@ -15,6 +15,9 @@ public class HiveSelection : MonoBehaviour
 	public TextMeshProUGUI textField;
 	public GameObject[] buttons;
 
+	private Dictionary<Keyname, List<Keyname>> neighMap = new Dictionary<Keyname, List<Keyname>>();
+
+
 	private const float moveThreshold = 1.0e-10f;
 	private const float defaultSelectionTime = 0.25f;
 	private float lastSelectionTime = defaultSelectionTime;
@@ -43,6 +46,26 @@ public class HiveSelection : MonoBehaviour
 		textField.text = sentences[currentSentenceIndex];
 		//inputField.ActivateInputField();
 
+		// Construct neighborhood arrays
+		neighMap.Add(Keyname.KeyA, new List<Keyname>(){Keyname.KeyD,Keyname.KeyC,Keyname.KeyB,Keyname.KeyG,Keyname.KeyF,Keyname.KeyE});
+		neighMap.Add(Keyname.KeyB, new List<Keyname>(){Keyname.KeyC,Keyname.KeyJ,Keyname.KeyI,Keyname.KeyH,Keyname.KeyG,Keyname.KeyA});
+		neighMap.Add(Keyname.KeyC, new List<Keyname>(){Keyname.KeyL,Keyname.KeyK,Keyname.KeyJ,Keyname.KeyB,Keyname.KeyA,Keyname.KeyD});
+		neighMap.Add(Keyname.KeyD, new List<Keyname>(){Keyname.KeyM,Keyname.KeyL,Keyname.KeyC,Keyname.KeyA,Keyname.KeyE,Keyname.KeyN});
+		neighMap.Add(Keyname.KeyE, new List<Keyname>(){Keyname.KeyN,Keyname.KeyD,Keyname.KeyA,Keyname.KeyF,Keyname.KeyP,Keyname.KeyO});
+		neighMap.Add(Keyname.KeyF, new List<Keyname>(){Keyname.KeyE,Keyname.KeyA,Keyname.KeyG,Keyname.KeyR,Keyname.KeyQ,Keyname.KeyP});
+		neighMap.Add(Keyname.KeyG, new List<Keyname>(){Keyname.KeyA,Keyname.KeyB,Keyname.KeyH,Keyname.KeyS,Keyname.KeyR,Keyname.KeyF});
+		neighMap.Add(Keyname.KeyH, new List<Keyname>(){Keyname.KeyB,Keyname.KeyI,Keyname.KeyP,Keyname.KeyL,Keyname.KeyS,Keyname.KeyG});
+		neighMap.Add(Keyname.KeyI, new List<Keyname>(){Keyname.KeyJ,Keyname.KeyS,Keyname.KeyO,Keyname.KeyK,Keyname.KeyH,Keyname.KeyB});
+		neighMap.Add(Keyname.KeyJ, new List<Keyname>(){Keyname.KeyK,Keyname.KeyR,Keyname.KeyN,Keyname.KeyI,Keyname.KeyB,Keyname.KeyC});
+		neighMap.Add(Keyname.KeyK, new List<Keyname>(){Keyname.KeyI,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyJ,Keyname.KeyC,Keyname.KeyL});
+		neighMap.Add(Keyname.KeyL, new List<Keyname>(){Keyname.KeyH,Keyname.KeyP,Keyname.KeyK,Keyname.KeyC,Keyname.KeyD,Keyname.KeyM});
+		neighMap.Add(Keyname.KeyM, new List<Keyname>(){Keyname.KeyS,Keyname.KeyO,Keyname.KeyL,Keyname.KeyD,Keyname.KeyN,Keyname.KeyK});
+		neighMap.Add(Keyname.KeyN, new List<Keyname>(){Keyname.KeyR,Keyname.KeyM,Keyname.KeyD,Keyname.KeyE,Keyname.KeyO,Keyname.KeyJ});
+		neighMap.Add(Keyname.KeyO, new List<Keyname>(){Keyname.KeyQ,Keyname.KeyN,Keyname.KeyE,Keyname.KeyP,Keyname.KeyM,Keyname.KeyI});
+		neighMap.Add(Keyname.KeyP, new List<Keyname>(){Keyname.KeyO,Keyname.KeyE,Keyname.KeyF,Keyname.KeyQ,Keyname.KeyL,Keyname.KeyH});
+		neighMap.Add(Keyname.KeyQ, new List<Keyname>(){Keyname.KeyP,Keyname.KeyF,Keyname.KeyR,Keyname.KeyO,Keyname.KeyK,Keyname.KeyS});
+		neighMap.Add(Keyname.KeyR, new List<Keyname>(){Keyname.KeyF,Keyname.KeyG,Keyname.KeyS,Keyname.KeyN,Keyname.KeyJ,Keyname.KeyQ});
+		neighMap.Add(Keyname.KeyS, new List<Keyname>(){Keyname.KeyG,Keyname.KeyH,Keyname.KeyQ,Keyname.KeyM,Keyname.KeyI,Keyname.KeyR});
 	}
 
 
@@ -60,72 +83,9 @@ public class HiveSelection : MonoBehaviour
 			angle += 360;
 
 
-
-
 		if (lastSelectionTime <= 0.0f && sqrLength > moveThreshold) 
 		{
-			switch (selectedButton)
-			{
-			case Keyname.KeyA:
-				SelectionfromA(angle);
-				break;
-			case Keyname.KeyB:
-				SelectionfromB(angle);
-				break;
-			case Keyname.KeyC:
-				SelectionfromC(angle);
-				break;
-			case Keyname.KeyD:
-				SelectionfromD(angle);
-				break;
-			case Keyname.KeyE:
-				SelectionfromE(angle);
-				break;
-			case Keyname.KeyF:
-				SelectionfromF(angle);
-				break;
-			case Keyname.KeyG:
-				SelectionfromG(angle);
-				break;
-			case Keyname.KeyH:
-				SelectionfromH(angle);
-				break;
-			case Keyname.KeyI:
-				SelectionfromI(angle);
-				break;
-			case Keyname.KeyJ:
-				SelectionfromJ(angle);
-				break;
-			case Keyname.KeyK:
-				SelectionfromK(angle);
-				break;
-			case Keyname.KeyL:
-				SelectionfromL(angle);
-				break;
-			case Keyname.KeyM:
-				SelectionfromM(angle);
-				break;
-			case Keyname.KeyN:
-				SelectionfromN(angle);
-				break;
-			case Keyname.KeyO:
-				SelectionfromO(angle);
-				break;
-			case Keyname.KeyP:
-				SelectionfromP(angle);
-				break;
-			case Keyname.KeyQ:
-				SelectionfromQ(angle);
-				break;
-			case Keyname.KeyR:
-				SelectionfromR(angle);
-				break;
-			case Keyname.KeyS:
-				SelectionfromS(angle);
-				break;
-			}
-
-
+			SelectionChange(angle);
 		}
 
 	}
@@ -227,667 +187,44 @@ public class HiveSelection : MonoBehaviour
 	}
 
 
-
-
-
-
-
-	// Selection for neighbours of A
-	public void SelectionfromA(float angle)
+	// Change selection
+	private void SelectionChange(float angle)
 	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyD;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyC;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyB;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyF;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyE;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyA], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of B
-	public void SelectionfromB(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyC;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyI;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyA;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyB], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of C
-	public void SelectionfromC(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyL;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyB;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyA;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyD;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyC], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of D
-	public void SelectionfromD(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyM;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyL;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyC;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyA;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyE;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyN;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyD], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of E
-	public void SelectionfromE(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyN;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyD;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyA;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyF;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyP;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyO;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyE], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of F
-	public void SelectionfromF(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyE;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyA;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyR;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyP;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyF], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of G
-	public void SelectionfromG(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyA;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyB;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyS;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyR;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyF;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyG], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of H
-	public void SelectionfromH(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyB;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyI;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyP;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyL;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyS;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyG;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyH], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of I
-	public void SelectionfromI(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyS;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyO;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyB;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyI], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of J
-	public void SelectionfromJ(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyR;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyN;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyI;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyB;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyC;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyJ], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of K
-	public void SelectionfromK(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyI;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyM;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyC;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyL;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyK], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of L
-	public void SelectionfromL(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else if (angle > 90.0f &&  angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyP;
-		}
-		else if (angle > 150.0f &&  angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else if (angle > 210.0f &&  angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyC;
-		}
-		else if (angle > 270.0f &&  angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyD;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyM;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyL], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of M
-	public void SelectionfromM(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyS;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyO;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyL;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyD;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyN;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyK;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyM], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of N
-	public void SelectionfromN(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyR;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyM;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyD;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyE;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyO;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyN], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-	// Selection for neighbours of O
-	public void SelectionfromO(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyN;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyE;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyP;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyM;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyI;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyO], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of P
-	public void SelectionfromP(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyO;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyE;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyF;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyL;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyH;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyP], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of Q
-	public void SelectionfromQ(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyP;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyF;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyR;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyO;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyK;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyS;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyQ], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of R
-	public void SelectionfromR(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyF;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyS;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyN;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyJ;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyR], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-
-
-	// Selection for neighbours of S
-	public void SelectionfromS(float angle)
-	{
-		if (angle > 30.0f && angle <= 90.0f) 
-		{
-			selectedButton = Keyname.KeyG;
-		}
-		else if (angle > 90.0f && angle <= 150.0f)
-		{
-			selectedButton = Keyname.KeyH;
-		}
-		else if (angle > 150.0f && angle <= 210.0f)
-		{
-			selectedButton = Keyname.KeyQ;
-		}
-		else if (angle > 210.0f && angle <= 270.0f)
-		{
-			selectedButton = Keyname.KeyM;
-		}
-		else if (angle > 270.0f && angle <= 330.0f)
-		{
-			selectedButton = Keyname.KeyI;
-		}
-		else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
-		{
-			selectedButton = Keyname.KeyR;
-		}
-
-		lastSelectionTime = defaultSelectionTime; 
-
-		SetButtonColor(buttons[(int)Keyname.KeyS], originalColor); 
-		SetButtonColor(buttons[(int)selectedButton], selectedColor);
-	}
-		
+		List<Keyname> neighArray = neighMap[selectedButton];
+
+		if (neighArray != null)
+		{
+			SetButtonColor(buttons[(int)selectedButton], originalColor); 
+
+			if (angle > 30.0f && angle <= 90.0f) 
+			{
+				selectedButton = neighArray[0];
+			}
+			else if (angle > 90.0f &&  angle <= 150.0f)
+			{
+				selectedButton = neighArray[1];
+			}
+			else if (angle > 150.0f &&  angle <= 210.0f)
+			{
+				selectedButton = neighArray[2];
+			}
+			else if (angle > 210.0f &&  angle <= 270.0f)
+			{
+				selectedButton = neighArray[3];
+			}
+			else if (angle > 270.0f &&  angle <= 330.0f)
+			{
+				selectedButton = neighArray[4];
+			}
+			else //if ((angle > 0.0f &&  angle <= 30.0f) || (angle > 330.0f &&  angle <= 360.0f))
+			{
+				selectedButton = neighArray[5];
+			}
+
+			lastSelectionTime = defaultSelectionTime; 
+			SetButtonColor(buttons[(int)selectedButton], selectedColor);
+		}
+	}		
 
 }
 
