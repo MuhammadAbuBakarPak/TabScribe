@@ -31,11 +31,11 @@ public class HiveSelection : MonoBehaviour
 
 	private int currentSentenceIndex = 0;	
 	private string[] sentences = {
-		"a bad fig jam",
-		"ben can hang a bag",
-		"ann had a mad camel",
-		"ben can bake a cake",
-		"hank feeding an eagle"
+		"sam is a good boss",
+		"i am feeling bad",
+		"moon color is green",
+		"mission impossible is released",
+		"i am going abroad"
 	};
 
 
@@ -114,7 +114,8 @@ public class HiveSelection : MonoBehaviour
 
 	private void ProcessKeyPress()
 	{
-		if (Input.anyKeyDown && inputField.text.Length == 0 && startTime == 0.0f)
+		int T = inputField.text.Length;
+		if (Input.anyKeyDown && T == 0 && startTime == 0.0f)
 		{
 			// Start the timer for text entry
 			startTime = Time.time;
@@ -130,9 +131,9 @@ public class HiveSelection : MonoBehaviour
 		// Handle backspace key
 		if (Input.GetKeyDown(KeyCode.F2))
 		{
-			if (inputField != null && inputField.text.Length > 0)
+			if (inputField != null && T > 0)
 			{
-				inputField.text = inputField.text.Remove(inputField.text.Length - 1);
+				inputField.text = inputField.text.Remove(T - 1);
 			}
 		}
 
@@ -151,7 +152,7 @@ public class HiveSelection : MonoBehaviour
 			//float endTime = Time.time;
 			// Calculate the text entry speed for the current sentence
 			float elapsedTime = Time.time - startTime;
-			float wordsPerMinute = (inputField.text.Length - 1) / elapsedTime * 60.0f * 0.2f;
+			float wordsPerMinute = (T - 1) / elapsedTime * 60.0f * 0.2f;
 			Debug.LogFormat("Text Entry Speed (Sentence {0}): {1} WPM", currentSentenceIndex, wordsPerMinute);
 
 			// Reset start time
@@ -183,6 +184,9 @@ public class HiveSelection : MonoBehaviour
 				// Reset sentence index and display a message
 				currentSentenceIndex = 0;
 				textField.text = "Done";
+
+				// Clear the text field
+				inputField.text = string.Empty;
 			}
 		}
 	}
